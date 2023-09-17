@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calendario</title>
+    <link rel="stylesheet" href="decoracao3.css">
+    <script lang="Javascript">
+        function calendario() {
+    const mes2 = document.getElementById("mes");
+    const ano2 = document.getElementById("ano");
+    const calendarioDiv = document.getElementById("calendario");
+    const mes= parseInt(mes2.value);
+    const ano = parseInt(ano2.value);
+
+    const diasDoMes = new Date(ano, mes+ 1, 0).getDate();
+    const primeiroDia = new Date(ano, mes, 1).getDay();
+
+    let calendarioHTML = "<table align='center'>";
+    calendarioHTML += "<tr bgcolor= 'lightgray'><td>Dom</td><td>Seg</td><td>Ter</td><td>Qua</td><td>Qui</td><td>Sex</td><td>Sáb</td></tr>";
+    let c = 1;
+
+    for (let i = 0; i < 6; i++) {
+      calendarioHTML += "<tr>";
+      for (let j = 0; j < 7; j++) {
+        if (i === 0 && j < primeiroDia) {
+          calendarioHTML += "<td></td>";
+        } else if (c >= diasDoMes) {
+          calendarioHTML += "<td></td>";
+        } else {
+          calendarioHTML += `<td>${c}</td>`;
+          c++;
+        }
+      }
+      calendarioHTML += "</tr>";
+    }
+
+    calendarioHTML += "</table>";
+    calendarioDiv.innerHTML = calendarioHTML;
+  }
+   
+    
+</script>
+</head>
+<body>
+
+    
+
+    <script lang="Javascript">
+         
+    </script>
+
+<form name="frmDados">
+Selecione o mês:
+<select name="mes" id="mes">
+    <option value="1">JAN</option>
+    <option value="2">FEV</option>
+    <option value="3">MAR</option>
+    <option value="4">ABR</option>
+    <option value="5">MAIO</option>
+    <option value="6">JUN</option>
+    <option value="7">JUl</option>
+    <option value="8">AGO</option>
+    <option value="9">SET</option>
+    <option value="10">OUT</option>
+    <option value="11">NOV</option>
+    <option value="12">DEZ</option>
+ </select><br>
+ 
+ <input type="number" id="ano" min="1900" max="2100">
+
+ <input type="button" value="enviar" onclick="calendario();">
+
+ </form>
+
+ <div id="calendario"></div>
+
+
+</body>
+</html>
